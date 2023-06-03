@@ -1,6 +1,16 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar=()=>{
+
+    const navigator=useNavigate();
+
+
+    const clearToken=()=>{
+        localStorage.removeItem("USER_TOKEN");
+        navigator('/');
+    }
+
     return(
         <>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -9,7 +19,7 @@ const NavBar=()=>{
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
@@ -18,7 +28,7 @@ const NavBar=()=>{
                     <a class="nav-link" href="#">Employee <span class="sr-only">(current)</span></a>
                 </li> 
                 </ul>
-                <button class="btn btn-outline-warning my-2 my-sm-0" type="button">Logout</button>
+                <button class="btn btn-outline-warning my-2 my-sm-0"  onClick={()=>clearToken()} type="button">Logout</button>
             </div>
         </nav>
         </>
