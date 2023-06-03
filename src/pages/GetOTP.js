@@ -1,15 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const GetOTP=()=>{
 
     const [phoneNumber,setPhoneNumber] = useState('');
 
+    const navigator= useNavigate();
 
     
 
     const getOTPforNumber=()=>{
         fetch('http://localhost:7007/api/v1/auth/generateOTP/'+phoneNumber).then((response)=>{
-            response.json().then(data=>console.log(data));
+            response.json().then(data=>{
+                    if(data && data.OTP)
+                    {
+                        localStorage.setItem("PHONE_NUMBER",phoneNumber);
+                        console.log(data)
+                        navigator('/enter-otp');
+                    }
+            });
         });
     }
 
