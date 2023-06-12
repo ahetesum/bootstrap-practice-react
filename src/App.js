@@ -20,7 +20,6 @@ function App() {
         <Route path="/" element={<GetOTP/>} ></Route>
         <Route path="/employee-list" element={<EmployeeList/>} ></Route>
         <Route path="/employee-create" element={<EmployeeCreate/>} ></Route>
-
         <Route path="/employee-update" element={<EmployeeUpdate/>} ></Route>
 
       </Routes>

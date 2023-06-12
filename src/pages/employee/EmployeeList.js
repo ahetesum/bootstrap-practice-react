@@ -12,6 +12,15 @@ const EmployeeList=()=>{
         getEmployees();
     },[])
 
+    const redirectEdit=(id)=>{
+        console.log(id);
+
+    }
+    const redirectCreate=()=>{
+        navigator('/employee-create');
+
+    }
+
     const getEmployees=()=>{
         const token = localStorage.getItem('USER_TOKEN');
         fetch('http://localhost:7007/api/v1/employee?limit=10&page=0&sort=desc',{ method: 'GET',  headers: {
@@ -34,6 +43,7 @@ const EmployeeList=()=>{
         <>
         <div className="container mt-5">
             <div className="row">
+                <button type="button" onClick={()=>redirectCreate()}  className="btn btn-info justify-content-end">Create</button>
             <table class="table">
                 <thead>
                     <tr>
@@ -47,16 +57,16 @@ const EmployeeList=()=>{
                 <tbody>
                     {
                         employees.map((item)=>{
-
+                            if(item.firstName!="Admin")
                             return (
-                                    <tr>
+                                    <tr key={item._id}>
                                     <th scope="row">{item.firstName + " "+ item.lastName}</th>
                                     <td>{item.salary}</td>
                                     <td>{item.dob}</td>
                                     <td>{item.designation}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <button type="button" class="btn btn-success">Edit</button>
+                                        <button type="button" onClick={()=>redirectEdit(item._id)} class="btn btn-success">Edit</button>
                                         <button type="button" class="btn btn-danger">Delete</button>
                                         </div></td>
                                     </tr>

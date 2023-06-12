@@ -14,9 +14,16 @@ const GetOTP=()=>{
             response.json().then(data=>{
                     if(data && data.OTP)
                     {
+                
                         localStorage.setItem("PHONE_NUMBER",phoneNumber);
+                        localStorage.setItem("USER_ROLE",data.role)
+
                         console.log(data)
                         navigator('/enter-otp');
+                    }
+                    else  if(data.error)
+                    {
+                        alert(data.error);
                     }
             });
         });
@@ -30,7 +37,7 @@ const GetOTP=()=>{
                 value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)}
                 aria-describedby="emailHelp" placeholder="Enter Phone" />
             </div>
-            <button type="button" onClick={()=>getOTPforNumber()} class="btn btn-primary">Get OTP</button>
+            <button type="button" onClick={()=>getOTPforNumber()} class="btn btn-primary">Get OTP</button>            
         </div>
     );
 }

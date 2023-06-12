@@ -27,9 +27,10 @@ const EnterOTP=()=>{
                     if(data && data.token)
                     {
                         console.log(data)
-                        localStorage.setItem("USER_TOKEN",data.token)
+           
+                        localStorage.setItem("USER_TOKEN",data.token);
 
-                        navigator('/dashboard');
+                        navigator('/employee-list');
                     }
             });
         });
