@@ -14,6 +14,8 @@ const EmployeeList=()=>{
 
     const redirectEdit=(id)=>{
         console.log(id);
+        navigator('/employee-update/'+id);
+
 
     }
     const redirectCreate=()=>{
